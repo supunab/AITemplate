@@ -83,7 +83,7 @@ class Model {
         num_outputs_(num_outputs),
         constants_(constants) {
       dmlc::InitLogging("aitemplate"); // TODO(xxx): render network name
-      LOG(INFO) << "Init AITemplate Runtime.";
+      // LOG(INFO) << "Init AITemplate Runtime.";
       global_workspace_ = static_cast<uint8_t*>(workspace_.get()) + {{ unique_workspace_size }};
       unique_workspace_ = static_cast<uint8_t*>(workspace_.get());
       DEVICE_CHECK(GetDevice(&device_idx_))
