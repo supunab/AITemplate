@@ -108,6 +108,8 @@ class MultiheadAttention(Module):
         causal=False,
         mask_seq=0,
         use_mem_eff=False,
+        force_use_flash=False,
+        force_unfused_attn=False
     ):
         super().__init__()
         assert (
@@ -129,6 +131,14 @@ class MultiheadAttention(Module):
         # odd seq try use flash
         if seq_len % 2 == 1:
             self.use_flash = True
+
+        if force_use_flash:
+            assert (not use_mem_eff) and (not force_unfused_attn), "cannot force_use_flash and use_mem_eff att the same time!"
+            self.use_flash = True
+
+        if force_unfused_attn:
+            assert (not force_use_flash) and (not use_mem_eff)
+            self.use_flash = False
 
         if use_mem_eff:
             self.op = ops.mem_eff_attention(
