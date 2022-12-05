@@ -14,7 +14,9 @@
 #
 # flake8: noqa
 from .bert_embeddings import bert_embeddings
+from .bert_embeddings_with_emb_out import bert_embeddings_with_emb
 
 __all__ = [
     "bert_embeddings",
+    "bert_embeddings_with_emb"
 ]

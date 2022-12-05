@@ -14,3 +14,4 @@
 #
 # flake8: noqa
 from .bert_embeddings import *
+from .bert_embeddings_with_emb_out import *
